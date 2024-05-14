@@ -5,8 +5,8 @@ sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_
 /etc/init.d/ssh restart
 
 echo "root:HackMyPasswordLol" | chpasswd
-useradd user && echo "user:password" | chpasswd
-useradd administrator && echo "administrator:password" | chpasswd
+useradd -m -d /home/user user && echo "user:password" | chpasswd
+useradd -m -d /home/user administrator && echo "administrator:password" | chpasswd
 
 
 apt-get install vim -y
