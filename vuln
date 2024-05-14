@@ -6,8 +6,9 @@ sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_
 
 echo "root:HackMyPasswordLol" | chpasswd
 useradd -m -d /home/user user && echo "user:password" | chpasswd
-useradd -m -d /home/user administrator && echo "administrator:password" | chpasswd
+useradd -m -d /home/administrator administrator && echo "administrator:password" | chpasswd
 
+echo -e "user:password1 \nadministrator:password1 \nroot:SGFja015UGFzc3dvcmRMb2w=" | tee /home/user/.passwords /home/administrator/.passwords
 
 apt-get install vim -y
 echo "ALL ALL=(ALL) NOPASSWD: /bin/vim" >> /etc/sudoers
@@ -16,4 +17,5 @@ apt-get install socat -y
 apt-get install iptables -y
 
 iptables -A INPUT -p tcp --dport 20 -j ACCEPT
-socat TCP-LISTEN:20,fork,reuseaddr SYSTEM:"echo 'cm9vdDpIYWNrTXlQYXNzd29yZExvbA=='" &
+socat TCP-LISTEN:1025,fork,reuseaddr SYSTEM:"echo 'dXNlcjpwYXNzd29yZDE='" &
+socat TCP-LISTEN:101,fork,reuseaddr SYSTEM:"echo 'cm9vdDpIYWNrTXlQYXNzd29yZExvbA=='" &
