@@ -13,8 +13,7 @@ sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_
 
 echo "root:HackMyPasswordLol" | chpasswd
 
-ls /home/user
-if [ $? -eq 0 ]; then
+if [ ! -f /home/user ]; then
   mkdir /home/user
   mkdir /home/administrator
   useradd -m -d /home/user user && echo "user:password1" | chpasswd
