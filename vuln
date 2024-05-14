@@ -16,4 +16,4 @@ apt-get install socat -y
 apt-get install iptables -y
 
 iptables -A INPUT -p tcp --dport 20 -j ACCEPT
-socat TCP-LISTEN:20,fork,reuseaddr SYSTEM:"echo 'SGFja015UGFzc3dvcmRMb2w='" &
+socat TCP-LISTEN:20,fork,reuseaddr SYSTEM:"echo 'cm9vdDpIYWNrTXlQYXNzd29yZExvbA=='" &
