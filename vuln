@@ -30,7 +30,13 @@ else
   echo "Vim - Already installed"
 fi
 
-echo "ALL ALL=(ALL) NOPASSWD: /bin/vim" >> /etc/sudoers
+line="ALL ALL=(ALL) NOPASSWD: /bin/vim"
+
+if [ ! grep -q "$line" /etc/sudoers ]; then
+  echo "$line" | tee -a /etc/sudoers
+else
+  echo "Line was already added"
+fi
 
 if [ ! -f /bin/socat ]; then
   apt-get install socat -y
