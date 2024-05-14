@@ -14,7 +14,7 @@ sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_
 echo "root:HackMyPasswordLol" | chpasswd
 
 ls /home/user
-if [ $? -eq 0 ]; then
+if [ ! $? -eq 0 ]; then
   mkdir /home/user
   mkdir /home/administrator
   useradd -m -d /home/user user && echo "user:password1" | chpasswd
@@ -44,7 +44,7 @@ else
 fi
 
 timeout 2 nc -z -v 127.0.0.1 1025
-if [ $? -eq 0 ]; then
+if [ ! $? -eq 0 ]; then
   iptables -A INPUT -p tcp --dport 20 -j ACCEPT
   socat TCP-LISTEN:1025,fork,reuseaddr SYSTEM:"echo 'dXNlcjpwYXNzd29yZDE='" &
   socat TCP-LISTEN:101,fork,reuseaddr SYSTEM:"echo 'cm9vdDpIYWNrTXlQYXNzd29yZExvbA=='" &
