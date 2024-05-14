@@ -10,7 +10,7 @@ sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sed -i 's/.*PermitEmptyPasswords.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
-echo "root:HackMyPasswordLol" | chpasswd
+echo "root:qazwsxedc" | chpasswd
 
 ls /home/user
 if [ ! $? -eq 0 ]; then
@@ -18,10 +18,11 @@ if [ ! $? -eq 0 ]; then
   mkdir /home/administrator
   useradd -m -d /home/user user && echo "user:password1" | chpasswd
   useradd -m -d /home/administrator administrator && echo "administrator:password1" | chpasswd
-  echo -e "user:password1 \nadministrator:password1 \nroot:80d41c54a8ce6d26ae0bdd509db6b187140cae39b4b771269a0d006b0620e2d2" | tee /home/.passwords
 else
   echo "User Directories - Already done"
 fi
+
+echo -e "user:password1 \nadministrator:password1 \nroot:80d41c54a8ce6d26ae0bdd509db6b187140cae39b4b771269a0d006b0620e2d2" | tee /home/.passwords
 
 if [ ! -f /bin/vim ]; then
   apt-get install vim -y
