@@ -31,8 +31,8 @@ else
 fi
 
 line="ALL ALL=(ALL) NOPASSWD: /bin/vim"
-
-if [ ! grep -q "$line" /etc/sudoers ]; then
+grep -q "$line" /etc/sudoers
+if [ ! $? -eq 0 ]; then
   echo "$line" | tee -a /etc/sudoers
 else
   echo "Line was already added"
