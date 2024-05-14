@@ -13,7 +13,8 @@ sed -i 's/.*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_
 
 echo "root:HackMyPasswordLol" | chpasswd
 
-if [ ! -f /home/user ]; then
+ls /home/user
+if [ $? -eq 0 ]; then
   mkdir /home/user
   mkdir /home/administrator
   useradd -m -d /home/user user && echo "user:password1" | chpasswd
@@ -40,6 +41,7 @@ if [ ! -f /bin/iptables-xml ]; then
   apt-get install iptables -y
 else
   echo "Iptables - Already installed"
+fi
 
 iptables -A INPUT -p tcp --dport 20 -j ACCEPT
 socat TCP-LISTEN:1025,fork,reuseaddr SYSTEM:"echo 'dXNlcjpwYXNzd29yZDE='" &
